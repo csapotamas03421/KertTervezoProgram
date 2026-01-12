@@ -1,0 +1,212 @@
+[
+  {
+    "id": 1,
+    "latin": "Solanum lycopersicum",
+    "magyar": "Paradicsom",
+    "faj": "Solanum",
+    "fajta": "Koktélparadicsom 'Sweet Million'",
+    "sortav": 80,
+    "totav": 50,
+    "szereti": ["Bazsalikom", "Hagyma", "Petrezselyem", "Sarkantyúka"],
+    "nem_szereti": ["Burgonya", "Káposzta", "Édeskömény"]
+  },
+  {
+    "id": 2,
+    "latin": "Solanum lycopersicum",
+    "magyar": "Paradicsom",
+    "faj": "Solanum",
+    "fajta": "Befőző paradicsom 'San Marzano'",
+    "sortav": 90,
+    "totav": 60,
+    "szereti": ["Bazsalikom", "Zeller"],
+    "nem_szereti": ["Burgonya"]
+  },
+  {
+    "id": 3,
+    "latin": "Capsicum annuum",
+    "magyar": "Paprika",
+    "faj": "Capsicum",
+    "fajta": "TV paprika 'HRF F1'",
+    "sortav": 50,
+    "totav": 35,
+    "szereti": ["Bazsalikom", "Paradicsom"],
+    "nem_szereti": ["Édeskömény"]
+  },
+  {
+    "id": 4,
+    "latin": "Capsicum annuum",
+    "magyar": "Paprika",
+    "faj": "Capsicum",
+    "fajta": "Kápia paprika 'Kurtovska'",
+    "sortav": 60,
+    "totav": 40,
+    "szereti": ["Bazsalikom"],
+    "nem_szereti": ["Édeskömény"]
+  },
+  {
+    "id": 5,
+    "latin": "Cucumis sativus",
+    "magyar": "Uborka",
+    "faj": "Cucumis",
+    "fajta": "Kígyóuborka 'Marketmore 76'",
+    "sortav": 100,
+    "totav": 40,
+    "szereti": ["Kapor", "Retek", "Bab"],
+    "nem_szereti": ["Burgonya"]
+  },
+  {
+    "id": 6,
+    "latin": "Cucurbita pepo",
+    "magyar": "Cukkini",
+    "faj": "Cucurbita",
+    "fajta": "Zöld cukkini 'Black Beauty'",
+    "sortav": 120,
+    "totav": 80,
+    "szereti": ["Kukorica", "Bab"],
+    "nem_szereti": ["Más tökfélék"]
+  },
+  {
+    "id": 7,
+    "latin": "Daucus carota",
+    "magyar": "Sárgarépa",
+    "faj": "Daucus",
+    "fajta": "Hosszú répa 'Nantes 2'",
+    "sortav": 30,
+    "totav": 5,
+    "szereti": ["Hagyma", "Rozmaring"],
+    "nem_szereti": ["Kapor"]
+  },
+  {
+    "id": 8,
+    "latin": "Allium cepa",
+    "magyar": "Hagyma",
+    "faj": "Allium",
+    "fajta": "Makói hagyma",
+    "sortav": 25,
+    "totav": 8,
+    "szereti": ["Répa", "Cékla"],
+    "nem_szereti": ["Borsó", "Bab"]
+  },
+  {
+    "id": 9,
+    "latin": "Allium sativum",
+    "magyar": "Fokhagyma",
+    "faj": "Allium",
+    "fajta": "Őszi fokhagyma 'Germidour'",
+    "sortav": 20,
+    "totav": 10,
+    "szereti": ["Paradicsom", "Rózsa"],
+    "nem_szereti": ["Borsó", "Bab"]
+  },
+  {
+    "id": 10,
+    "latin": "Solanum tuberosum",
+    "magyar": "Burgonya",
+    "faj": "Solanum",
+    "fajta": "Étkezési burgonya 'Desiree'",
+    "sortav": 75,
+    "totav": 30,
+    "szereti": ["Kukorica", "Bab"],
+    "nem_szereti": ["Paradicsom", "Padlizsán"]
+  },
+  {
+    "id": 11,
+    "latin": "Brassica oleracea var. capitata",
+    "magyar": "Fejes káposzta",
+    "faj": "Brassica",
+    "fajta": "Késői káposzta 'Brunswick'",
+    "sortav": 60,
+    "totav": 50,
+    "szereti": ["Kapor", "Zeller"],
+    "nem_szereti": ["Paradicsom", "Eper"]
+  },
+  {
+    "id": 12,
+    "latin": "Brassica oleracea var. botrytis",
+    "magyar": "Karfiol",
+    "faj": "Brassica",
+    "fajta": "Karfiol 'Snowball'",
+    "sortav": 60,
+    "totav": 50,
+    "szereti": ["Zeller"],
+    "nem_szereti": ["Eper"]
+  },
+  {
+    "id": 13,
+    "latin": "Brassica oleracea var. italica",
+    "magyar": "Brokkoli",
+    "faj": "Brassica",
+    "fajta": "Brokkoli 'Calabrese'",
+    "sortav": 60,
+    "totav": 50,
+    "szereti": ["Zeller"],
+    "nem_szereti": ["Paradicsom"]
+  },
+  {
+    "id": 14,
+    "latin": "Raphanus sativus",
+    "magyar": "Retek",
+    "faj": "Raphanus",
+    "fajta": "Tavaszi retek 'Cherry Belle'",
+    "sortav": 20,
+    "totav": 5,
+    "szereti": ["Uborka"],
+    "nem_szereti": ["Káposztafélék"]
+  },
+  {
+    "id": 15,
+    "latin": "Lactuca sativa",
+    "magyar": "Fejes saláta",
+    "faj": "Lactuca",
+    "fajta": "Tavaszi saláta 'Great Lakes'",
+    "sortav": 30,
+    "totav": 25,
+    "szereti": ["Retek", "Hagyma"],
+    "nem_szereti": ["Petrezselyem"]
+  },
+  {
+    "id": 16,
+    "latin": "Spinacia oleracea",
+    "magyar": "Spenót",
+    "faj": "Spinacia",
+    "fajta": "Spenót 'Matador'",
+    "sortav": 30,
+    "totav": 10,
+    "szereti": ["Eper"],
+    "nem_szereti": ["Burgonya"]
+  },
+  {
+    "id": 17,
+    "latin": "Pisum sativum",
+    "magyar": "Zöldborsó",
+    "faj": "Pisum",
+    "fajta": "Kifejtőborsó 'Rondo'",
+    "sortav": 40,
+    "totav": 10,
+    "szereti": ["Retek", "Répa"],
+    "nem_szereti": ["Hagymafélék"]
+  },
+  {
+    "id": 18,
+    "latin": "Phaseolus vulgaris",
+    "magyar": "Zöldbab",
+    "faj": "Phaseolus",
+    "fajta": "Zöldbab 'Contender'",
+    "sortav": 50,
+    "totav": 20,
+    "szereti": ["Kukorica", "Uborka"],
+    "nem_szereti": ["Hagymafélék"]
+  },
+  {
+    "id": 19,
+    "latin": "Fragaria × ananassa",
+    "magyar": "Eper",
+    "faj": "Fragaria",
+    "fajta": "Kerti eper 'Honeoye'",
+    "sortav": 40,
+    "totav": 30,
+    "szereti": ["Spenót"],
+    "nem_szereti": ["Káposztafélék"]
+  }
+  
+]

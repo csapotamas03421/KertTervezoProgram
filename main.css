@@ -1,0 +1,13 @@
+#alap{
+    display: flex;
+    justify-content: center;
+}
+
+#novenyHozzaadas{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    width: 100px;
+    height: auto;
+}

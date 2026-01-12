@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="main.css">
+    <title>Növény hozzáadása</title>
+</head>
+<body>
+    <div id="alap">
+        <div id="novenyHozzaadas">
+            <h4>Növény hozzáadása</h4>
+
+            <form action="/add" method="POST">
+                <input type="text" placeholder="Magyar név" name="magyar" required><br><br>
+
+                <input type="text" placeholder="Latin név" name="latin" required><br><br>
+
+                <input type="text" placeholder="Faj" name="faj" required><br><br>
+
+                <input type="text" placeholder="fajta" name="fajta" required><br><br>
+
+                <input type="number" placeholder="Sortáv (cm)" name="sortav" required><br><br>
+
+                <input type="number" placeholder="Tőtáv (cm)" name="totav" required><br><br>
+
+                <input type="text" placeholder="Szereti (növény, ...)" name="szereti"><br><br>
+
+                <input type="text" placeholder="Nem szereti (növény, ...)" name="nem_szereti"><br><br>
+
+                <button type="submit">Hozzáadás</button>
+            </form>
+        </div>
+    </div>
+    
+    
+</body>
+</html>

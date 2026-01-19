@@ -7,8 +7,17 @@
     "fajta": "Koktélparadicsom 'Sweet Million'",
     "sortav": 80,
     "totav": 50,
-    "szereti": ["Bazsalikom", "Hagyma", "Petrezselyem", "Sarkantyúka"],
-    "nem_szereti": ["Burgonya", "Káposzta", "Édeskömény"]
+    "szereti": [
+      "Bazsalikom",
+      "Hagyma",
+      "Petrezselyem",
+      "Sarkantyúka"
+    ],
+    "nem_szereti": [
+      "Burgonya",
+      "Káposzta",
+      "Édeskömény"
+    ]
   },
   {
     "id": 2,
@@ -18,8 +27,13 @@
     "fajta": "Befőző paradicsom 'San Marzano'",
     "sortav": 90,
     "totav": 60,
-    "szereti": ["Bazsalikom", "Zeller"],
-    "nem_szereti": ["Burgonya"]
+    "szereti": [
+      "Bazsalikom",
+      "Zeller"
+    ],
+    "nem_szereti": [
+      "Burgonya"
+    ]
   },
   {
     "id": 3,
@@ -29,8 +43,13 @@
     "fajta": "TV paprika 'HRF F1'",
     "sortav": 50,
     "totav": 35,
-    "szereti": ["Bazsalikom", "Paradicsom"],
-    "nem_szereti": ["Édeskömény"]
+    "szereti": [
+      "Bazsalikom",
+      "Paradicsom"
+    ],
+    "nem_szereti": [
+      "Édeskömény"
+    ]
   },
   {
     "id": 4,
@@ -40,8 +59,12 @@
     "fajta": "Kápia paprika 'Kurtovska'",
     "sortav": 60,
     "totav": 40,
-    "szereti": ["Bazsalikom"],
-    "nem_szereti": ["Édeskömény"]
+    "szereti": [
+      "Bazsalikom"
+    ],
+    "nem_szereti": [
+      "Édeskömény"
+    ]
   },
   {
     "id": 5,
@@ -51,8 +74,14 @@
     "fajta": "Kígyóuborka 'Marketmore 76'",
     "sortav": 100,
     "totav": 40,
-    "szereti": ["Kapor", "Retek", "Bab"],
-    "nem_szereti": ["Burgonya"]
+    "szereti": [
+      "Kapor",
+      "Retek",
+      "Bab"
+    ],
+    "nem_szereti": [
+      "Burgonya"
+    ]
   },
   {
     "id": 6,
@@ -62,8 +91,13 @@
     "fajta": "Zöld cukkini 'Black Beauty'",
     "sortav": 120,
     "totav": 80,
-    "szereti": ["Kukorica", "Bab"],
-    "nem_szereti": ["Más tökfélék"]
+    "szereti": [
+      "Kukorica",
+      "Bab"
+    ],
+    "nem_szereti": [
+      "Más tökfélék"
+    ]
   },
   {
     "id": 7,
@@ -73,8 +107,13 @@
     "fajta": "Hosszú répa 'Nantes 2'",
     "sortav": 30,
     "totav": 5,
-    "szereti": ["Hagyma", "Rozmaring"],
-    "nem_szereti": ["Kapor"]
+    "szereti": [
+      "Hagyma",
+      "Rozmaring"
+    ],
+    "nem_szereti": [
+      "Kapor"
+    ]
   },
   {
     "id": 8,
@@ -84,8 +123,14 @@
     "fajta": "Makói hagyma",
     "sortav": 25,
     "totav": 8,
-    "szereti": ["Répa", "Cékla"],
-    "nem_szereti": ["Borsó", "Bab"]
+    "szereti": [
+      "Répa",
+      "Cékla"
+    ],
+    "nem_szereti": [
+      "Borsó",
+      "Bab"
+    ]
   },
   {
     "id": 9,
@@ -95,8 +140,14 @@
     "fajta": "Őszi fokhagyma 'Germidour'",
     "sortav": 20,
     "totav": 10,
-    "szereti": ["Paradicsom", "Rózsa"],
-    "nem_szereti": ["Borsó", "Bab"]
+    "szereti": [
+      "Paradicsom",
+      "Rózsa"
+    ],
+    "nem_szereti": [
+      "Borsó",
+      "Bab"
+    ]
   },
   {
     "id": 10,
@@ -106,8 +157,14 @@
     "fajta": "Étkezési burgonya 'Desiree'",
     "sortav": 75,
     "totav": 30,
-    "szereti": ["Kukorica", "Bab"],
-    "nem_szereti": ["Paradicsom", "Padlizsán"]
+    "szereti": [
+      "Kukorica",
+      "Bab"
+    ],
+    "nem_szereti": [
+      "Paradicsom",
+      "Padlizsán"
+    ]
   },
   {
     "id": 11,
@@ -117,8 +174,14 @@
     "fajta": "Késői káposzta 'Brunswick'",
     "sortav": 60,
     "totav": 50,
-    "szereti": ["Kapor", "Zeller"],
-    "nem_szereti": ["Paradicsom", "Eper"]
+    "szereti": [
+      "Kapor",
+      "Zeller"
+    ],
+    "nem_szereti": [
+      "Paradicsom",
+      "Eper"
+    ]
   },
   {
     "id": 12,
@@ -128,8 +191,12 @@
     "fajta": "Karfiol 'Snowball'",
     "sortav": 60,
     "totav": 50,
-    "szereti": ["Zeller"],
-    "nem_szereti": ["Eper"]
+    "szereti": [
+      "Zeller"
+    ],
+    "nem_szereti": [
+      "Eper"
+    ]
   },
   {
     "id": 13,
@@ -139,8 +206,12 @@
     "fajta": "Brokkoli 'Calabrese'",
     "sortav": 60,
     "totav": 50,
-    "szereti": ["Zeller"],
-    "nem_szereti": ["Paradicsom"]
+    "szereti": [
+      "Zeller"
+    ],
+    "nem_szereti": [
+      "Paradicsom"
+    ]
   },
   {
     "id": 14,
@@ -150,8 +221,12 @@
     "fajta": "Tavaszi retek 'Cherry Belle'",
     "sortav": 20,
     "totav": 5,
-    "szereti": ["Uborka"],
-    "nem_szereti": ["Káposztafélék"]
+    "szereti": [
+      "Uborka"
+    ],
+    "nem_szereti": [
+      "Káposztafélék"
+    ]
   },
   {
     "id": 15,
@@ -161,8 +236,13 @@
     "fajta": "Tavaszi saláta 'Great Lakes'",
     "sortav": 30,
     "totav": 25,
-    "szereti": ["Retek", "Hagyma"],
-    "nem_szereti": ["Petrezselyem"]
+    "szereti": [
+      "Retek",
+      "Hagyma"
+    ],
+    "nem_szereti": [
+      "Petrezselyem"
+    ]
   },
   {
     "id": 16,
@@ -172,8 +252,12 @@
     "fajta": "Spenót 'Matador'",
     "sortav": 30,
     "totav": 10,
-    "szereti": ["Eper"],
-    "nem_szereti": ["Burgonya"]
+    "szereti": [
+      "Eper"
+    ],
+    "nem_szereti": [
+      "Burgonya"
+    ]
   },
   {
     "id": 17,
@@ -183,8 +267,13 @@
     "fajta": "Kifejtőborsó 'Rondo'",
     "sortav": 40,
     "totav": 10,
-    "szereti": ["Retek", "Répa"],
-    "nem_szereti": ["Hagymafélék"]
+    "szereti": [
+      "Retek",
+      "Répa"
+    ],
+    "nem_szereti": [
+      "Hagymafélék"
+    ]
   },
   {
     "id": 18,
@@ -194,8 +283,13 @@
     "fajta": "Zöldbab 'Contender'",
     "sortav": 50,
     "totav": 20,
-    "szereti": ["Kukorica", "Uborka"],
-    "nem_szereti": ["Hagymafélék"]
+    "szereti": [
+      "Kukorica",
+      "Uborka"
+    ],
+    "nem_szereti": [
+      "Hagymafélék"
+    ]
   },
   {
     "id": 19,
@@ -205,8 +299,11 @@
     "fajta": "Kerti eper 'Honeoye'",
     "sortav": 40,
     "totav": 30,
-    "szereti": ["Spenót"],
-    "nem_szereti": ["Káposztafélék"]
+    "szereti": [
+      "Spenót"
+    ],
+    "nem_szereti": [
+      "Káposztafélék"
+    ]
   }
-  
 ]

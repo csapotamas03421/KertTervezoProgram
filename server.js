@@ -20,13 +20,12 @@ app.post("/add", (req, res) => {
 
         const plants = JSON.parse(data);
 
-        // Legnagyobb ID meghatározása
         const maxId = plants.length > 0
             ? Math.max(...plants.map(p => p.id))
             : 0;
 
         const newPlant = {
-            id: maxId + 1,   // <<< Folyamatos növekvő ID
+            id: maxId + 1,
             latin: req.body.latin,
             magyar: req.body.magyar,
             faj: req.body.faj,
@@ -41,9 +40,32 @@ app.post("/add", (req, res) => {
 
         fs.writeFile(filePath, JSON.stringify(plants, null, 2), (err) => {
             if (err) throw err;
-
             res.send("Növény sikeresen hozzáadva!");
         });
+    });
+});
+
+// POST: kert adatok mentése
+app.post("/saveGarden", (req, res) => {
+    const filePath = path.join(__dirname, "data", "kertAdatok.json");
+
+    //console.log("Kapott adatok:", req.body); // DEBUG
+
+    const gardenData = {
+        kert_szelessege: req.body.kert_szelessege,
+        kert_magassaga: req.body.kert_magassaga,
+        agyasok_szelessege: req.body.agyasok_szelessege,
+        agyasok_magassaga: req.body.agyasok_magassaga,
+        agyasok_darabszama: req.body.agyasok_darabszama
+    };
+
+    fs.writeFile(filePath, JSON.stringify(gardenData, null, 2), (err) => {
+        if (err) {
+            console.error("Hiba a kert mentésekor:", err);
+            return res.status(500).send("Hiba történt a mentés során.");
+        }
+
+        res.send("Kert adatai sikeresen elmentve!");
     });
 });
 

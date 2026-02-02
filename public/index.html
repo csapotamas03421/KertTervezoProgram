@@ -7,6 +7,34 @@
 </head>
 <body>
     <div id="alap">
+        <div id="kertmeretMegadasa">
+            <h4>Kert méretének megadása</h4>
+
+            <form action="/setGardenSize" method="POST">
+                <input type="text" placeholder="Kert szélessége (m)" name="kert_szelessege" required><br><br>
+
+                <input type="text" placeholder="Kert magassága" name="kert_magassaga" required><br><br>
+
+                <input type="text" placeholder="Ágyasok szélessége (m)" name="agyasok_szelessege" required><br><br>
+
+                <input type="text" placeholder="Ágyások magassága (m)" name="agyasok_magassaga" required><br><br>
+
+                <input type="text" placeholder="Ágyások darabszáma" name="szelesseg" required><br><br>
+
+                <button type="button" name="kert_szamitasa">Kert számítása</button>
+
+                <button type="button" name="agyasok_szamitasa">Ágyások számítása</button>
+
+                <button type="button" name="agyasokosszter_kis_kertter">Tervezés</button>
+
+                <button type="button" name="agyas_reset">Ágyások újra megadása</button>
+
+                <button type="button" name="kert_megjelenites">Megjelenítés</button>
+
+                <button type="submit">Mentés</button>
+            </form>
+
+        </div>
         <div id="novenyHozzaadas">
             <h4>Növény hozzáadása</h4>
 
@@ -27,11 +55,71 @@
 
                 <input type="text" placeholder="Nem szereti (növény, ...)" name="nem_szereti"><br><br>
 
-                <button type="submit">Hozzáadás</button>
+                <button type="submit" id="noveny_hozzaadas">Hozzáadás</button>
+
+                <p id="uzenet"></p>
             </form>
         </div>
     </div>
     
-    
+    <script>
+        // Kert teruletenek kiszamitasa
+        document.querySelector('button[name="kert_szamitasa"]').addEventListener('click', function() {
+            const szelesseg = parseFloat(document.querySelector('input[name="kert_szelessege"]').value);
+            const magassag = parseFloat(document.querySelector('input[name="kert_magassaga"]').value);
+            if (!isNaN(szelesseg) && !isNaN(magassag)) {
+                const terulet = szelesseg * magassag;
+                alert(`A kert területe: ${terulet} m²`);
+            } else {
+                alert('Kérlek, érvényes számokat adj meg a kert méretéhez!');
+            }
+        }
+        );
+
+        //Agyasok összterületének kiszámítása
+        document.querySelector('button[name="agyasok_szamitasa"]').addEventListener('click', function
+        () {
+            const agyasokSzelessege = parseFloat(document.querySelector('input[name="agyasok_szelessege"]').value);
+            const agyasokMagassaga = parseFloat(document.querySelector('input[name="agyasok_magassaga"]').value);
+            const agyasokDarabszama = parseInt(document.querySelector('input[name="szelesseg"]').value);
+            if (!isNaN(agyasokSzelessege) && !isNaN(agyasokMagassaga) && !isNaN(agyasokDarabszama)) {
+                const osszTerulet = agyasokSzelessege * agyasokMagassaga * agyasokDarabszama;
+                alert(`Az ágyások összterülete: ${osszTerulet} m²`);
+            } else {
+                alert('Adj meg érvényes számokat az ágyások méretéhez és darabszámához!');
+            }
+        }
+        );
+
+        //Beleférnek az ágyások a kertbe?
+        document.querySelector('button[name="agyasokosszter_kis_kertter"]').addEventListener('click', function () {
+            const kertSzelessege = parseFloat(document.querySelector('input[name="kert_szelessege"]').value);
+            const kertMagassaga = parseFloat(document.querySelector('input[name="kert_magassaga"]').value);
+            const agyasokSzelessege = parseFloat(document.querySelector('input[name="agyasok_szelessege"]').value);
+            const agyasokMagassaga = parseFloat(document.querySelector('input[name="agyasok_magassaga"]').value);
+            const agyasokDarabszama = parseInt(document.querySelector('input[name="szelesseg"]').value);
+            if (!isNaN(kertSzelessege) && !isNaN(kertMagassaga) && !isNaN(agyasokSzelessege) && !isNaN(agyasokMagassaga) && !isNaN(agyasokDarabszama)) {
+                const kertTerulete = kertSzelessege * kertMagassaga;
+                const agyasokOsszTerulete = agyasokSzelessege * agyasokMagassaga * agyasokDarabszama;
+                if (agyasokOsszTerulete <= kertTerulete) {
+                    alert('Az ágyások elférnek a kertben.');
+                } else {
+                    alert('Az ágyások nem férnek el a kertben. Kérlek használd a "Ágyások újra megadása" gombot az ágyásaid méretének változtatásáshoz!');
+                }
+            } else {
+                alert('Adj meg érvényes számokat a kert és az ágyások méretéhez és darabszámához!');
+            }
+        }
+        );
+
+        //Agyasok resetelése
+        document.querySelector('button[name="agyas_reset"]').addEventListener('click', function () {
+            document.querySelector('input[name="agyasok_szelessege"]').value = '';
+            document.querySelector('input[name="agyasok_magassaga"]').value = '';
+            document.querySelector('input[name="szelesseg"]').value = '';
+            alert('Az ágyások adatai törölve lettek. Kérlek add meg újra az ágyások méreteit és darabszámát!');
+        }
+        );
+    </script>
 </body>
 </html>

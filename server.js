@@ -8,7 +8,7 @@ const app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-// statikus fájlok (pl. index.html)
+// statikus fájlok (index.html, main.css)
 app.use(express.static("public"));
 
 // POST: új növény hozzáadása
@@ -36,6 +36,8 @@ app.post("/add", (req, res) => {
             szereti: req.body.szereti ? req.body.szereti.split(",").map(s => s.trim()) : [],
             nem_szereti: req.body.nem_szereti ? req.body.nem_szereti.split(",").map(s => s.trim()) : []
         };
+
+        
 
         plants.push(newPlant);
 

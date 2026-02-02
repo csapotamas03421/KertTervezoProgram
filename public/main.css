@@ -3,35 +3,16 @@
 /* === RESET === */
 * {
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 body {
-    margin: 0;
     font-family: 'Inter', sans-serif;
-background:
-        /* sötét vignetta */
-        radial-gradient(
-            circle at top,
-            rgba(0, 0, 0, 0.25),
-            transparent 60%
-        ),
-
-        /* barna földes tónus */
-        linear-gradient(
-            160deg,
-            #3e2723,
-            #5d4037,
-            #8d6e63
-        ),
-
-        /* zöld–sárga természetes alap */
-        linear-gradient(
-            135deg,
-            #e8f5e9,
-            #fffde7,
-            #f3efe0
-        );
-
+    background:
+        radial-gradient(circle at top, rgba(0,0,0,0.25), transparent 60%),
+        linear-gradient(160deg, #3e2723, #5d4037, #8d6e63),
+        linear-gradient(135deg, #e8f5e9, #fffde7, #f3efe0);
     background-blend-mode: multiply, overlay, normal;
     color: #2b2b2b;
 }
@@ -39,38 +20,42 @@ background:
 /* === APP CONTAINER === */
 #alap {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(2, 1fr); /* Két oszlop desktopon */
     gap: 32px;
     padding: 32px;
     max-width: 1200px;
     margin: auto;
     animation: fadeIn 0.6s ease;
+    align-items: start; /* oszlopok tetejéhez igazítás */
 }
 
 /* === CARDS === */
-#kertmeretMegadasa, #novenyHozzaadas {
+#novenyHozzaadas, #kertmeretMegadasa {
     backdrop-filter: blur(6px);
     background: rgba(255, 255, 255, 0.92);
     border-radius: 18px;
-    box-shadow: 
-        0 10px 30px rgba(91, 64, 38, 0.15);
+    box-shadow: 0 10px 30px rgba(91, 64, 38, 0.15);
     padding: 28px;
     transition: all 0.3s ease;
-    border-left: 6px solid #7cb342; /* zöld */
+    border-left: 6px solid #7cb342; /* alap zöld */
+    display: flex;
+    flex-direction: column;
+    height: 100%; /* egységes magasság */
 }
 
 #novenyHozzaadas {
     border-left-color: #fbc02d; /* sárga */
 }
 
-#kertmeretMegadasa:hover, #novenyHozzaadas:hover {
+#novenyHozzaadas:hover,
+#kertmeretMegadasa:hover {
     transform: translateY(-6px);
 }
 
 /* === HEADINGS === */
-h4 {
+h3 {
     margin-bottom: 20px;
-    font-size: 1.25rem;
+    font-size: 1.3rem;
     color: #4e342e; /* barna */
 }
 
@@ -81,7 +66,7 @@ form {
 }
 
 /* === INPUTS === */
-input {
+input, select {
     padding: 14px 16px;
     border-radius: 12px;
     border: 1px solid #d7ccc8;
@@ -90,7 +75,7 @@ input {
     transition: all 0.25s ease;
 }
 
-input:focus {
+input:focus, select:focus {
     outline: none;
     border-color: #fbc02d;
     box-shadow: 0 0 0 3px rgba(251, 192, 45, 0.35);
@@ -105,21 +90,14 @@ button {
     border: none;
     font-weight: 600;
     cursor: pointer;
-    background: linear-gradient(
-        135deg,
-        #8d6e63,
-        #6d4c41
-    );
+    background: linear-gradient(135deg, #8d6e63, #6d4c41);
     color: #fff;
     transition: all 0.3s ease;
 }
 
-
-
 button:hover {
     transform: translateY(-2px) scale(1.03);
-    box-shadow: 
-        0 8px 22px rgba(121, 85, 72, 0.4);
+    box-shadow: 0 8px 22px rgba(121, 85, 72, 0.4);
 }
 
 button:active {
@@ -127,40 +105,35 @@ button:active {
 }
 
 /* === SPECIAL BUTTONS === */
-button[name="agyas_reset"] {
-    background: linear-gradient(
-        135deg,
-        #8d6e63,
-        #6d4c41
-    );
+button[name="agyasReset"] {
+    background: linear-gradient(135deg, #8d6e63, #6d4c41);
     color: #fff;
 }
 
 button[type="submit"] {
-    background: linear-gradient(
-        135deg,
-        #689f38,
-        #ffeb3b
-    );
+    background: linear-gradient(135deg, #689f38, #ffeb3b);
 }
 
-/* === SPACING FIX === */
+/* === SPACING === */
 br {
     display: none;
 }
 
-input + input, input + button, button + button {
+input + input,
+input + button,
+button + button,
+input + select {
     margin-top: 12px;
 }
 
-/* === MOBILE === */
+/* === MOBILE RESPONSIVE === */
 @media (max-width: 900px) {
     #alap {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr; /* mobilon egymás alá */
         padding: 16px;
     }
 
-    h4 {
+    h3 {
         text-align: center;
     }
 }

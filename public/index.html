@@ -2,105 +2,175 @@
 <html lang="hu">
 <head>
     <meta charset="UTF-8">
+    <title>Kerttervező</title>
     <link rel="stylesheet" href="main.css">
-    <title>Növény hozzáadása</title>
 </head>
 <body>
-    <div id="alap">
-        <div id="novenyHozzaadas">
-            <h4>Növény hozzáadása</h4>
 
-            <form action="/add" method="POST">
-                <input type="text" placeholder="Magyar név" name="magyar" required><br><br>
-                <input type="text" placeholder="Latin név" name="latin" required><br><br>
-                <input type="text" placeholder="Faj" name="faj" required><br><br>
-                <input type="text" placeholder="Fajta" name="fajta" required><br><br>
-                <input type="number" placeholder="Sortáv (cm)" name="sortav" required><br><br>
-                <input type="number" placeholder="Tőtáv (cm)" name="totav" required><br><br>
-                <input type="text" placeholder="Szereti (növény, ...)" name="szereti"><br><br>
-                <input type="text" placeholder="Nem szereti (növény, ...)" name="nem_szereti"><br><br>
-                <button type="submit">Hozzáadás</button>
-            </form>
-        </div>
+<div id="alap">
 
-        <div id="kertmeretMegadasa">
-            <h4>Kert méretének megadása</h4>
+    <!-- ================= NÖVÉNY HOZZÁADÁS ================= -->
+    <div id="novenyHozzaadas">
+        <h3>Növény hozzáadása</h3>
 
-            <!-- FONTOS: a form NEM küldi el magát -->
-            <form onsubmit="return false;">
-                <input type="text" placeholder="Kert szélessége (m)" name="kert_szelessege" required><br><br>
-                <input type="text" placeholder="Kert magassága" name="kert_magassaga" required><br><br>
-                <input type="text" placeholder="Ágyasok szélessége (m)" name="agyasok_szelessege" required><br><br>
-                <input type="text" placeholder="Ágyások magassága (m)" name="agyasok_magassaga" required><br><br>
-                <input type="text" placeholder="Ágyások darabszáma" name="agyasok_darabszama" required><br><br>
+        <form action="/add" method="POST">
+            <input type="text" name="magyar" placeholder="Magyar név" required><br><br>
+            <input type="text" name="latin" placeholder="Latin név" required><br><br>
+            <input type="text" name="faj" placeholder="Faj" required><br><br>
+            <input type="text" name="fajta" placeholder="Fajta" required><br><br>
+            <input type="number" name="sortav" placeholder="Sortáv (cm)" required><br><br>
+            <input type="number" name="totav" placeholder="Tőtáv (cm)" required><br><br>
+            <input type="text" name="szereti" placeholder="Szereti (növény, ...)"><br><br>
+            <input type="text" name="nem_szereti" placeholder="Nem szereti (növény, ...)"><br><br>
 
-                <button type="button" name="kert_szamitasa">Kert számítása</button>
-                <button type="button" name="agyasok_szamitasa">Ágyások számítása</button>
-                <button type="button" name="agyasokosszter_kis_kertter">Tervezés</button>
-                <button type="button" name="agyas_reset">Ágyások újra megadása</button>
-                <button type="button" name="kert_megjelenites">Megjelenítés</button>
-            </form>
-        </div>
+            <button type="submit">Hozzáadás</button>
+        </form>
     </div>
+
+    <hr>
+
+    <!-- ================= KERT MÉRETEZÉS ================= -->
+    <div id="kertmeretMegadasa">
+        <h3>Kert méreteinek megadása</h3>
+
+        <!-- FONTOS: nem submitol -->
+        <form onsubmit="return false;">
+            <input type="number" name="kert_szelessege" placeholder="Kert szélessége (m)"><br><br>
+            <input type="number" name="kert_magassaga" placeholder="Kert magassága (m)"><br><br>
+
+            <button type="button" id="kertSzamitas">Kert terület számítása</button>
+
+            <br><br>
+
+            <input type="number" name="agyasok_szelessege" placeholder="Ágyások szélessége (m)"><br><br>
+            <input type="number" name="agyasok_magassaga" placeholder="Ágyások magassága (m)"><br><br>
+            <input type="number" name="agyasok_darabszama" placeholder="Ágyások darabszáma"><br><br>
+
+            <button type="button" id="agyasSzamitas">Ágyások összterülete</button>
+            <button type="button" id="agyasReset">Ágyások törlése</button>
+
+            <br>
+            <button type="button" id="ellenorzes">Tervezés (elfér-e)</button>
+            <br>
+
+            <!-- ===== NÖVÉNYEK LEGDÖRÜLŐ LISTA ===== -->
+            <select id="novenyekLista">
+                <option value="" disabled selected>Válassz növényt</option>
+            </select>
+            <input type="number" name="noveny_darabszama" placeholder="Növény darabszáma"><br><br>
+            <button type="button" id="noveny_elhelyezes">Növény elhelyezése</button><br><br>
+
+            <br><br>
+
+            <button type="button" id="megjelenites">Megjelenítés</button>
+        </form>
+    </div>
+
+</div>
 
 <script>
 let jo_kert = false;
 
-// Kert terület számítás
-document.querySelector('button[name="kert_szamitasa"]').addEventListener('click', () => {
-    const sz = parseFloat(document.querySelector('input[name="kert_szelessege"]').value);
-    const m = parseFloat(document.querySelector('input[name="kert_magassaga"]').value);
-    if (!isNaN(sz) && !isNaN(m)) alert(`A kert területe: ${sz * m} m²`);
-});
+/* ===== KERT TERÜLET ===== */
+document.getElementById("kertSzamitas").onclick = () => {
+    const sz = Number(document.querySelector('[name="kert_szelessege"]').value);
+    const m = Number(document.querySelector('[name="kert_magassaga"]').value);
+    if (sz && m) {
+        alert(`A kert területe: ${sz * m} m²`);
+    }
+};
 
-// Ágyások összterület számítás
-document.querySelector('button[name="agyasok_szamitasa"]').addEventListener('click', () => {
-    const sz = parseFloat(document.querySelector('input[name="agyasok_szelessege"]').value);
-    const m = parseFloat(document.querySelector('input[name="agyasok_magassaga"]').value);
-    const db = parseInt(document.querySelector('input[name="agyasok_darabszama"]').value);
-    if (!isNaN(sz) && !isNaN(m) && !isNaN(db)) alert(`Összterület: ${sz * m * db} m²`);
-});
+/* ===== ÁGYÁS TERÜLET ===== */
+document.getElementById("agyasSzamitas").onclick = () => {
+    const sz = Number(document.querySelector('[name="agyasok_szelessege"]').value);
+    const m = Number(document.querySelector('[name="agyasok_magassaga"]').value);
+    const db = Number(document.querySelector('[name="agyasok_darabszama"]').value);
+    if (sz && m && db) {
+        alert(`Ágyások összterülete: ${sz * m * db} m²`);
+    }
+};
 
-// Beleférnek-e?
-document.querySelector('button[name="agyasokosszter_kis_kertter"]').addEventListener('click', () => {
-    const kertT = parseFloat(document.querySelector('input[name="kert_szelessege"]').value)
-               * parseFloat(document.querySelector('input[name="kert_magassaga"]').value);
+/* ===== RESET ===== */
+document.getElementById("agyasReset").onclick = () => {
+    document.querySelector('[name="agyasok_szelessege"]').value = "";
+    document.querySelector('[name="agyasok_magassaga"]').value = "";
+    document.querySelector('[name="agyasok_darabszama"]').value = "";
+};
 
-    const agyasT = parseFloat(document.querySelector('input[name="agyasok_szelessege"]').value)
-                 * parseFloat(document.querySelector('input[name="agyasok_magassaga"]').value)
-                 * parseInt(document.querySelector('input[name="agyasok_darabszama"]').value);
+/* ===== ELFER-E ===== */
+document.getElementById("ellenorzes").onclick = () => {
+    const kertT =
+        Number(document.querySelector('[name="kert_szelessege"]').value) *
+        Number(document.querySelector('[name="kert_magassaga"]').value);
+
+    const agyasT =
+        Number(document.querySelector('[name="agyasok_szelessege"]').value) *
+        Number(document.querySelector('[name="agyasok_magassaga"]').value) *
+        Number(document.querySelector('[name="agyasok_darabszama"]').value);
 
     jo_kert = agyasT <= kertT;
-    alert(jo_kert ? "Az ágyások elférnek." : "Nem férnek el.");
-});
+    alert(jo_kert ? "Az ágyások elférnek." : "Az ágyások nem férnek el.");
+};
 
-// Kert mentése + átirányítás
-document.querySelector('button[name="kert_megjelenites"]').addEventListener('click', () => {
-    if (!jo_kert) return alert("Előbb ellenőrizd, hogy elférnek-e!");
-
-    const kertAdatok = {
-        kert_szelessege: document.querySelector('input[name="kert_szelessege"]').value,
-        kert_magassaga: document.querySelector('input[name="kert_magassaga"]').value,
-        agyasok_szelessege: document.querySelector('input[name="agyasok_szelessege"]').value,
-        agyasok_magassaga: document.querySelector('input[name="agyasok_magassaga"]').value,
-        agyasok_darabszama: document.querySelector('input[name="agyasok_darabszama"]').value
-    };
+/* ===== KERT MENTÉS ===== */
+document.getElementById("megjelenites").onclick = () => {
+    if (!jo_kert) {
+        alert("Előbb ellenőrizd, hogy elférnek-e!");
+        return;
+    }
 
     fetch("/saveGarden", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(kertAdatok)
-    })
-    .then(r => r.text())
-    .then(() => window.location.href = "kert_megjelenites.html");
-});
+        body: JSON.stringify({
+            kert_szelessege: document.querySelector('[name="kert_szelessege"]').value,
+            kert_magassaga: document.querySelector('[name="kert_magassaga"]').value,
+            agyasok_szelessege: document.querySelector('[name="agyasok_szelessege"]').value,
+            agyasok_magassaga: document.querySelector('[name="agyasok_magassaga"]').value,
+            agyasok_darabszama: document.querySelector('[name="agyasok_darabszama"]').value
+        })
+    }).then(() => {
+        window.location.href = "kert_megjelenites.html";
+    });
+};
 
-// Reset
-document.querySelector('button[name="agyas_reset"]').addEventListener('click', () => {
-    document.querySelector('input[name="agyasok_szelessege"]').value = "";
-    document.querySelector('input[name="agyasok_magassaga"]').value = "";
-    document.querySelector('input[name="agyasok_darabszama"]').value = "";
-});
+/* ===== 🌱 NÖVÉNYEK BETÖLTÉSE JSON-BŐL ===== */
+fetch('/data/novenyAdatok.json')
+    .then(r => {
+        if (!r.ok) throw new Error("JSON nem érhető el");
+        return r.json();
+    })
+    .then(data => {
+        const select = document.getElementById("novenyekLista");
+        data.forEach(noveny => {
+            const option = document.createElement("option");
+            option.value = noveny.id;
+            option.textContent = noveny.magyar;
+            select.appendChild(option);
+        });
+    })
+    .catch(err => console.error("Betöltési hiba:", err));
+
+/* ===== 🌱 NÖVÉNY ELHELYEZÉS ===== */
+document.getElementById("noveny_elhelyezes").onclick = () => {
+    const select = document.getElementById("novenyekLista");
+    const darab = Number(document.querySelector('[name="noveny_darabszama"]').value);
+
+    if (!select.value) {
+        alert("Nem választottál növényt!");
+        return;
+    }
+
+    if (!darab || darab <= 0) {
+        alert("Adj meg egy érvényes darabszámot!");
+        return;
+    }
+
+    const novenyNev = select.options[select.selectedIndex].text;
+
+    alert(`Elhelyezve: ${darab} db ${novenyNev}`);
+};
+
 </script>
 
 </body>

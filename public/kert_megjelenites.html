@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <title>Kert tervező | Kert megjelenítés</title>
+</head>
+
+<body style="
+    font-family: Arial; 
+    background-image: url(./kepek/background3.jpg); 
+    background-repeat: no-repeat; 
+    background-size: cover;
+">
+
+<!-- 🔥 FEHÉR LEKEREKÍTETT KÖZPONTI DOBOZ -->
+<div style="
+    background: rgba(255,255,255,0.5); 
+    border-radius: 20px;
+    border: 3px solid black;
+    padding: 30px;
+    width: fit-content;
+    max-width: 90%;
+    margin: 40px auto;
+    box-shadow: 0 0 20px rgba(0,0,0,0.3);
+    backdrop-filter: blur(3px);
+">
+
+<h2 style="text-align:center;">Ágyások</h2>
+
+<div style="text-align:center; margin-bottom:20px;">
+    <label>Növények száma: </label>
+    <input type="number" id="plantCount" value="20" min="1">
+    <button onclick="addGarden()" style="background: #9CAB84;">Ágyás hozzáadása</button>
+    <button onclick="deleteAllGardens()" style="margin-left:20px; background: #D25353; color:white;">Összes törlése</button>
+</div>
+
+<!-- Lapozó gombok -->
+<div id="pagination" style="
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+"></div>
+
+<!-- Itt jelenik meg az aktuális ágyás -->
+<div id="gardenView" style="
+    width: 100%;
+    display: flex;
+    justify-content: center;
+"></div>
+
+</div> <!-- 🔥 FEHÉR DOBOZ VÉGE -->
+
+<script>
+let gardens = [];
+let currentIndex = 0;
+
+function addGarden() {
+    const plantCount = parseInt(document.getElementById("plantCount").value);
+
+    const width = window.innerWidth * 0.5;
+    const height = window.innerHeight * 0.5;
+
+    const squareSize = Math.sqrt((width * height) / plantCount);
+
+    const garden = document.createElement("div");
+    garden.style.width = width + "px";
+    garden.style.height = height + "px";
+    garden.style.display = "flex";
+    garden.style.flexWrap = "wrap";
+    garden.style.overflow = "hidden";
+
+    for (let i = 0; i < plantCount; i++) {
+        const sq = document.createElement("div");
+        sq.style.width = squareSize + "px";
+        sq.style.height = squareSize + "px";
+        sq.style.background = "#ffcccc";
+        sq.style.border = "1px solid black";
+
+        sq.textContent = "paradicsom";
+        sq.style.display = "flex";
+        sq.style.alignItems = "center";
+        sq.style.justifyContent = "center";
+        sq.style.fontSize = "12px";
+        sq.style.textAlign = "center";
+
+        garden.appendChild(sq);
+    }
+
+    gardens.push(garden);
+    updatePagination();
+    showGarden(gardens.length - 1);
+}
+
+function updatePagination() {
+    const pagination = document.getElementById("pagination");
+    pagination.innerHTML = "";
+
+    gardens.forEach((_, index) => {
+        const wrapper = document.createElement("div");
+        wrapper.style.display = "flex";
+        wrapper.style.flexDirection = "column";
+        wrapper.style.alignItems = "center";
+
+        const btn = document.createElement("button");
+        btn.textContent = index + 1;
+        btn.style.padding = "5px 10px";
+        btn.style.cursor = "pointer";
+
+        if (index === currentIndex) {
+            btn.style.background = "black";
+            btn.style.color = "white";
+        }
+
+        btn.onclick = () => showGarden(index);
+
+        const del = document.createElement("button");
+        del.textContent = "Törlés";
+        del.style.marginTop = "5px";
+        del.style.background = "rgb(211, 123, 123)";
+        del.style.color = "white";
+        del.style.cursor = "pointer";
+        del.onclick = () => deleteGarden(index);
+
+        wrapper.appendChild(btn);
+        wrapper.appendChild(del);
+        pagination.appendChild(wrapper);
+    });
+}
+
+function showGarden(index) {
+    currentIndex = index;
+
+    const view = document.getElementById("gardenView");
+    view.innerHTML = "";
+    view.appendChild(gardens[index]);
+
+    updatePagination();
+}
+
+function deleteGarden(index) {
+    gardens.splice(index, 1);
+
+    if (gardens.length === 0) {
+        document.getElementById("gardenView").innerHTML = "";
+        updatePagination();
+        return;
+    }
+
+    if (currentIndex >= gardens.length) {
+        currentIndex = gardens.length - 1;
+    }
+
+    showGarden(currentIndex);
+}
+
+function deleteAllGardens() {
+    gardens = [];
+    currentIndex = 0;
+    document.getElementById("gardenView").innerHTML = "";
+    updatePagination();
+}
+</script>
+
+</body>
+</html>

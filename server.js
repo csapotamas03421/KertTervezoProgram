@@ -76,6 +76,27 @@ app.post("/savePlant", (req, res) => {
 });
 
 
+
+// 🌿 ADATOK TÖRLÉSE
+app.post("/resetGarden", (req, res) => {
+    const filePath = path.join(__dirname, "data", "agyasadatok.json");
+    // Az üres kert objektumot is inicializáljuk üres mezőkkel, hogy a frontend ne dobjon hibát
+    const emptyData = { 
+        kert: {
+            kert_szelessege: 0,
+            kert_magassaga: 0,
+            agyasok_szelessege: 0,
+            agyasok_magassaga: 0,
+            agyasok_darabszama: 0
+        }, 
+        novenyek: [] 
+    };
+    fs.writeFileSync(filePath, JSON.stringify(emptyData, null, 2), "utf8");
+    res.send("Adatok törölve!");
+});
+
+
+
 // szerver indítása
 app.listen(3000, () => {
     console.log("Szerver fut: http://localhost:3000");

@@ -7,8 +7,12 @@
 </head>
 <body>
 
-<div id="alap">
+<br>
+<button onclick="window.location.href='uj_kert.html'" style="justify-content: center;">Kert megjelenítése</button>
 
+
+
+<div id="alap">
     <!-- ================= NÖVÉNY HOZZÁADÁS ================= -->
     <div id="novenyHozzaadas">
         <h3>Növény hozzáadása</h3>
@@ -27,11 +31,11 @@
         </form>
     </div>
 
-    <hr>
+    
 
     <!-- ================= KERT MÉRETEZÉS ================= -->
     <div id="kertmeretMegadasa">
-        <h3>Kert méreteinek megadása</h3>
+        <h3>Kert, ágyás hozzáadása</h3>
 
         <!-- FONTOS: nem submitol -->
         <form onsubmit="return false;">
@@ -130,7 +134,7 @@ document.getElementById("megjelenites").onclick = () => {
             agyasok_darabszama: document.querySelector('[name="agyasok_darabszama"]').value
         })
     }).then(() => {
-        window.location.href = "kert_megjelenites.html";
+        window.location.href = "uj_kert.html";
     });
 };
 

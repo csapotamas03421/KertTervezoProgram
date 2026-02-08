@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <title>Kert megjelenítés</title>
+    <style>
+        body {
+            font-family: Arial;
+            background-image: url(./kepek/background3.jpg);
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        .box {
+            background: rgba(255,255,255,0.5);
+            border-radius: 20px;
+            border: 3px solid black;
+            padding: 30px;
+            width: fit-content;
+            max-width: 90%;
+            margin: 40px auto;
+            box-shadow: 0 0 20px rgba(0,0,0,0.3);
+            backdrop-filter: blur(3px);
+        }
+        .inner {
+            background: #f3f3f3;
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+        }
+        h2 {
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="box">
+
+   <div style="display: flex; gap: 10px; margin-bottom: 20px;">
+    <button onclick="window.location.href='index.html'">Tervezés</button>
+    <button id="torles">Adatok törlése</button>
+</div>
+
+
+    <h2>Kert adatai</h2>
+    <div id="kert" class="inner">Betöltés...</div>
+
+    <h2>Ágyások</h2>
+    <div id="agyasok" class="inner">Betöltés...</div>
+
+    <h2>Elhelyezett növények</h2>
+    <div id="novenyek" class="inner">Betöltés...</div>
+
+</div>
+
+<script>
+// ===============================
+// 🌱 ADATOK BETÖLTÉSE (FRISSÍTETT)
+// ===============================
+fetch("/data/agyasadatok.json")
+    .then(r => r.json())
+    .then(data => {
+        // Ellenőrizzük, létezik-e a kert adat, ha nem, alapértelmezett 0-kat adunk
+        const kert = data.kert || { 
+            kert_szelessege: 0, kert_magassaga: 0, 
+            agyasok_darabszama: 0, agyasok_szelessege: 0, agyasok_magassaga: 0 
+        };
+
+        // --- KERT ---
+        document.getElementById("kert").innerHTML = `
+            <strong>Méret:</strong> ${kert.kert_szelessege} m × ${kert.kert_magassaga} m<br>
+            <strong>Teljes terület:</strong> ${kert.kert_szelessege * kert.kert_magassaga} m²
+        `;
+
+        // --- ÁGYÁSOK ---
+        document.getElementById("agyasok").innerHTML = `
+            <strong>Darabszám:</strong> ${kert.agyasok_darabszama} db<br>
+            <strong>Méret:</strong> ${kert.agyasok_szelessege} m × ${kert.agyasok_magassaga} m<br>
+            <strong>Összterület:</strong> ${kert.agyasok_szelessege * kert.agyasok_magassaga * kert.agyasok_darabszama} m²
+        `;
+
+        // --- NÖVÉNYEK ---
+        const novDiv = document.getElementById("novenyek");
+        novDiv.innerHTML = "";
+
+        if (!data.novenyek || data.novenyek.length === 0) {
+            novDiv.innerHTML = "Nincs elhelyezett növény.";
+        } else {
+            data.novenyek.forEach(n => {
+                const p = document.createElement("p");
+                p.innerHTML = `<strong>${n.noveny_nev}</strong>: ${n.darabszam} db`;
+                novDiv.appendChild(p);
+            });
+        }
+    })
+    .catch(err => {
+        document.getElementById("kert").innerText = "Még nincsenek mentett adatok.";
+        document.getElementById("agyasok").innerText = "-";
+        document.getElementById("novenyek").innerText = "-";
+        console.warn("Nincs adatfájl vagy üres.");
+    });
+
+
+// 🌿 TÖRLÉS GOMB MŰKÖDÉSE
+document.getElementById("torles").addEventListener("click", () => {
+    if (confirm("Biztosan törlöd az összes adatot?")) {
+        fetch("/resetGarden", { method: "POST" })
+            .then(r => {
+                if (!r.ok) throw new Error("Hiba történt a törlés közben");
+                alert("Adatok törölve!");
+                location.reload();
+            })
+            .catch(err => alert("Hiba: " + err.message));
+    }
+});
+</script>
+
+</body>
+</html>

@@ -21,22 +21,6 @@
   },
   {
     "id": 2,
-    "latin": "Solanum lycopersicum",
-    "magyar": "Paradicsom",
-    "faj": "Solanum",
-    "fajta": "Befőző paradicsom 'San Marzano'",
-    "sortav": 90,
-    "totav": 60,
-    "szereti": [
-      "Bazsalikom",
-      "Zeller"
-    ],
-    "nem_szereti": [
-      "Burgonya"
-    ]
-  },
-  {
-    "id": 3,
     "latin": "Capsicum annuum",
     "magyar": "Paprika",
     "faj": "Capsicum",
@@ -52,22 +36,7 @@
     ]
   },
   {
-    "id": 4,
-    "latin": "Capsicum annuum",
-    "magyar": "Paprika",
-    "faj": "Capsicum",
-    "fajta": "Kápia paprika 'Kurtovska'",
-    "sortav": 60,
-    "totav": 40,
-    "szereti": [
-      "Bazsalikom"
-    ],
-    "nem_szereti": [
-      "Édeskömény"
-    ]
-  },
-  {
-    "id": 5,
+    "id": 3,
     "latin": "Cucumis sativus",
     "magyar": "Uborka",
     "faj": "Cucumis",
@@ -84,7 +53,7 @@
     ]
   },
   {
-    "id": 6,
+    "id": 4,
     "latin": "Cucurbita pepo",
     "magyar": "Cukkini",
     "faj": "Cucurbita",
@@ -100,7 +69,7 @@
     ]
   },
   {
-    "id": 7,
+    "id": 5,
     "latin": "Daucus carota",
     "magyar": "Sárgarépa",
     "faj": "Daucus",
@@ -116,7 +85,7 @@
     ]
   },
   {
-    "id": 8,
+    "id": 6,
     "latin": "Allium cepa",
     "magyar": "Hagyma",
     "faj": "Allium",
@@ -133,7 +102,7 @@
     ]
   },
   {
-    "id": 9,
+    "id": 7,
     "latin": "Allium sativum",
     "magyar": "Fokhagyma",
     "faj": "Allium",
@@ -150,7 +119,7 @@
     ]
   },
   {
-    "id": 10,
+    "id": 8,
     "latin": "Solanum tuberosum",
     "magyar": "Burgonya",
     "faj": "Solanum",
@@ -167,7 +136,7 @@
     ]
   },
   {
-    "id": 11,
+    "id": 9,
     "latin": "Brassica oleracea var. capitata",
     "magyar": "Fejes káposzta",
     "faj": "Brassica",
@@ -184,7 +153,7 @@
     ]
   },
   {
-    "id": 12,
+    "id": 10,
     "latin": "Brassica oleracea var. botrytis",
     "magyar": "Karfiol",
     "faj": "Brassica",
@@ -199,7 +168,7 @@
     ]
   },
   {
-    "id": 13,
+    "id": 11,
     "latin": "Brassica oleracea var. italica",
     "magyar": "Brokkoli",
     "faj": "Brassica",
@@ -214,7 +183,7 @@
     ]
   },
   {
-    "id": 14,
+    "id": 12,
     "latin": "Raphanus sativus",
     "magyar": "Retek",
     "faj": "Raphanus",
@@ -229,7 +198,7 @@
     ]
   },
   {
-    "id": 15,
+    "id": 13,
     "latin": "Lactuca sativa",
     "magyar": "Fejes saláta",
     "faj": "Lactuca",
@@ -245,7 +214,7 @@
     ]
   },
   {
-    "id": 16,
+    "id": 14,
     "latin": "Spinacia oleracea",
     "magyar": "Spenót",
     "faj": "Spinacia",
@@ -260,7 +229,7 @@
     ]
   },
   {
-    "id": 17,
+    "id": 15,
     "latin": "Pisum sativum",
     "magyar": "Zöldborsó",
     "faj": "Pisum",
@@ -276,7 +245,7 @@
     ]
   },
   {
-    "id": 18,
+    "id": 16,
     "latin": "Phaseolus vulgaris",
     "magyar": "Zöldbab",
     "faj": "Phaseolus",
@@ -292,7 +261,7 @@
     ]
   },
   {
-    "id": 19,
+    "id": 17,
     "latin": "Fragaria × ananassa",
     "magyar": "Eper",
     "faj": "Fragaria",
@@ -306,4 +275,5 @@
       "Káposztafélék"
     ]
   }
+  
 ]

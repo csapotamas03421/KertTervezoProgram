@@ -57,6 +57,7 @@
 </div> <!--FEHÉR DOBOZ VÉGE -->
 
 <script>
+    
 let gardens = [];
 let currentIndex = 0;
 
@@ -164,7 +165,15 @@ function deleteAllGardens() {
     currentIndex = 0;
     document.getElementById("gardenView").innerHTML = "";
     updatePagination();
+
+    // 🔥 Szerver oldali JSON törlése
+    fetch("/resetGarden", {
+        method: "POST"
+    })
+    .then(r => r.text())
+    .then(msg => alert(msg));
 }
+
 </script>
 
 </body>

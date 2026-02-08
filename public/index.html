@@ -168,6 +168,19 @@ document.getElementById("noveny_elhelyezes").onclick = () => {
 
     const novenyNev = select.options[select.selectedIndex].text;
 
+    // 🔥 IGAZI MENTÉS
+    fetch("/savePlant", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+            noveny_id: select.value,
+            noveny_nev: novenyNev,
+            darabszam: darab
+        })
+    })
+    .then(r => r.text())
+    .then(msg => alert(msg));
+
     alert(`Elhelyezve: ${darab} db ${novenyNev}`);
 };
 

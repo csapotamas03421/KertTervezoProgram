@@ -33,12 +33,48 @@ app.post("/add", (req, res) => {
     res.send("Növény sikeresen hozzáadva!");
 });
 
-// kert adatok mentése
+
+// ===============================
+// 🌱 KERT + ÁGYÁS ADATOK MENTÉSE
+// ===============================
 app.post("/saveGarden", (req, res) => {
-    const filePath = path.join(__dirname, "data", "kertAdatok.json");
-    fs.writeFileSync(filePath, JSON.stringify(req.body, null, 2));
+    const filePath = path.join(__dirname, "data", "agyasadatok.json");
+
+    let data = {};
+    if (fs.existsSync(filePath) && fs.readFileSync(filePath, "utf8").trim() !== "") {
+        data = JSON.parse(fs.readFileSync(filePath, "utf8"));
+    }
+
+    data.kert = req.body;
+
+    fs.writeFileSync(filePath, JSON.stringify(data, null, 2));
     res.send("Kert adatai elmentve!");
 });
+
+
+// =====================================
+// 🌱 NÖVÉNY ELHELYEZÉS MENTÉSE
+// =====================================
+app.post("/savePlant", (req, res) => {
+    const filePath = path.join(__dirname, "data", "agyasadatok.json");
+
+    let data = {};
+    if (fs.existsSync(filePath) && fs.readFileSync(filePath, "utf8").trim() !== "") {
+        data = JSON.parse(fs.readFileSync(filePath, "utf8"));
+    }
+
+    if (!data.novenyek) data.novenyek = [];
+
+    data.novenyek.push({
+        noveny_id: req.body.noveny_id,
+        noveny_nev: req.body.noveny_nev,
+        darabszam: Number(req.body.darabszam)
+    });
+
+    fs.writeFileSync(filePath, JSON.stringify(data, null, 2));
+    res.send("Növény elmentve!");
+});
+
 
 // szerver indítása
 app.listen(3000, () => {

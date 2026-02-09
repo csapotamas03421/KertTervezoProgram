@@ -31,6 +31,7 @@ app.post("/add", (req, res) => {
     plants.push(newPlant);
     fs.writeFileSync(filePath, JSON.stringify(plants, null, 2));
     res.send("Növény sikeresen hozzáadva!");
+    
 });
 
 

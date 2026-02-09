@@ -8,16 +8,21 @@
 <body>
 
 <br>
+
+<h1 style="text-align: center;">Kert tervező</h1>
+
 <button onclick="window.location.href='uj_kert.html'" style="justify-content: center;">Kert megjelenítése</button>
 
 
 
 <div id="alap">
-    <!-- ================= NÖVÉNY HOZZÁADÁS ================= -->
+
+    <!-- =================NÖVÉNY HOZZÁADÁS================= -->
     <div id="novenyHozzaadas">
         <h3>Növény hozzáadása</h3>
 
-        <form action="/add" method="POST">
+        <!-- AJAX-os form, nincs action/method -->
+        <form id="novenyForm">
             <input type="text" name="magyar" placeholder="Magyar név" required><br><br>
             <input type="text" name="latin" placeholder="Latin név" required><br><br>
             <input type="text" name="faj" placeholder="Faj" required><br><br>
@@ -31,13 +36,10 @@
         </form>
     </div>
 
-    
-
-    <!-- ================= KERT MÉRETEZÉS ================= -->
+    <!-- =================KERT MÉRETEZÉS================= -->
     <div id="kertmeretMegadasa">
         <h3>Kert, ágyás hozzáadása</h3>
 
-        <!-- FONTOS: nem submitol -->
         <form onsubmit="return false;">
             <input type="number" name="kert_szelessege" placeholder="Kert szélessége (m)"><br><br>
             <input type="number" name="kert_magassaga" placeholder="Kert magassága (m)"><br><br>
@@ -57,7 +59,6 @@
             <button type="button" id="ellenorzes">Tervezés (elfér-e)</button>
             <br>
 
-            <!-- ===== NÖVÉNYEK LEGDÖRÜLŐ LISTA ===== -->
             <select id="novenyekLista">
                 <option value="" disabled selected>Válassz növényt</option>
             </select>
@@ -75,33 +76,56 @@
 <script>
 let jo_kert = false;
 
-/* ===== KERT TERÜLET ===== */
+/* =====NÖVÉNY HOZZÁADÁS AJAX===== */
+document.getElementById("novenyForm").onsubmit = (e) => {
+    e.preventDefault();
+
+    const formData = {
+        magyar: document.querySelector('[name="magyar"]').value,
+        latin: document.querySelector('[name="latin"]').value,
+        faj: document.querySelector('[name="faj"]').value,
+        fajta: document.querySelector('[name="fajta"]').value,
+        sortav: document.querySelector('[name="sortav"]').value,
+        totav: document.querySelector('[name="totav"]').value,
+        szereti: document.querySelector('[name="szereti"]').value,
+        nem_szereti: document.querySelector('[name="nem_szereti"]').value
+    };
+
+    fetch("/add", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData)
+    })
+    .then(r => r.text())
+    .then(msg => {
+        alert(msg);
+        document.getElementById("novenyForm").reset();
+    });
+};
+
+/* =====KERT TERÜLET===== */
 document.getElementById("kertSzamitas").onclick = () => {
     const sz = Number(document.querySelector('[name="kert_szelessege"]').value);
     const m = Number(document.querySelector('[name="kert_magassaga"]').value);
-    if (sz && m) {
-        alert(`A kert területe: ${sz * m} m²`);
-    }
+    if (sz && m) alert(`A kert területe: ${sz * m} m²`);
 };
 
-/* ===== ÁGYÁS TERÜLET ===== */
+/* =====ÁGYÁS TERÜLET===== */
 document.getElementById("agyasSzamitas").onclick = () => {
     const sz = Number(document.querySelector('[name="agyasok_szelessege"]').value);
     const m = Number(document.querySelector('[name="agyasok_magassaga"]').value);
     const db = Number(document.querySelector('[name="agyasok_darabszama"]').value);
-    if (sz && m && db) {
-        alert(`Ágyások összterülete: ${sz * m * db} m²`);
-    }
+    if (sz && m && db) alert(`Ágyások összterülete: ${sz * m * db} m²`);
 };
 
-/* ===== RESET ===== */
+/* =====RESET===== */
 document.getElementById("agyasReset").onclick = () => {
     document.querySelector('[name="agyasok_szelessege"]').value = "";
     document.querySelector('[name="agyasok_magassaga"]').value = "";
     document.querySelector('[name="agyasok_darabszama"]').value = "";
 };
 
-/* ===== ELFER-E ===== */
+/* =====ELFER-E===== */
 document.getElementById("ellenorzes").onclick = () => {
     const kertT =
         Number(document.querySelector('[name="kert_szelessege"]').value) *
@@ -116,7 +140,7 @@ document.getElementById("ellenorzes").onclick = () => {
     alert(jo_kert ? "Az ágyások elférnek." : "Az ágyások nem férnek el.");
 };
 
-/* ===== KERT MENTÉS ===== */
+/* =====KERT MENTÉS===== */
 document.getElementById("megjelenites").onclick = () => {
     if (!jo_kert) {
         alert("Előbb ellenőrizd, hogy elférnek-e!");
@@ -138,12 +162,9 @@ document.getElementById("megjelenites").onclick = () => {
     });
 };
 
-/* ===== 🌱 NÖVÉNYEK BETÖLTÉSE JSON-BŐL ===== */
+/* =====NÖVÉNYEK BETÖLTÉSE JSON-BŐL ===== */
 fetch('/data/novenyAdatok.json')
-    .then(r => {
-        if (!r.ok) throw new Error("JSON nem érhető el");
-        return r.json();
-    })
+    .then(r => r.json())
     .then(data => {
         const select = document.getElementById("novenyekLista");
         data.forEach(noveny => {
@@ -152,27 +173,18 @@ fetch('/data/novenyAdatok.json')
             option.textContent = noveny.magyar;
             select.appendChild(option);
         });
-    })
-    .catch(err => console.error("Betöltési hiba:", err));
+    });
 
-/* ===== 🌱 NÖVÉNY ELHELYEZÉS ===== */
+/* =====NÖVÉNY ELHELYEZÉS ===== */
 document.getElementById("noveny_elhelyezes").onclick = () => {
     const select = document.getElementById("novenyekLista");
     const darab = Number(document.querySelector('[name="noveny_darabszama"]').value);
 
-    if (!select.value) {
-        alert("Nem választottál növényt!");
-        return;
-    }
-
-    if (!darab || darab <= 0) {
-        alert("Adj meg egy érvényes darabszámot!");
-        return;
-    }
+    if (!select.value) return alert("Nem választottál növényt!");
+    if (!darab || darab <= 0) return alert("Adj meg egy érvényes darabszámot!");
 
     const novenyNev = select.options[select.selectedIndex].text;
 
-    // 🔥 IGAZI MENTÉS
     fetch("/savePlant", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -187,7 +199,6 @@ document.getElementById("noveny_elhelyezes").onclick = () => {
 
     alert(`Elhelyezve: ${darab} db ${novenyNev}`);
 };
-
 </script>
 
 </body>
